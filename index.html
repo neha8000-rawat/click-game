@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Website</title>
+
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            margin-top: 50px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin: 10px;
+            border: none;
+            border-radius: 8px;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 id="text">Click the button</h1>
+
+    <h2 id="count">Count: 0</h2> <h2 id="time">Time: 5</h2>
+
+    <button onclick="startGame()">Start Game</button>
+<button onclick="increaseCount()">Click Fast!</button>
+<button onclick="resetCount()">Reset</button>
+    
+
+<script>
+ let counter = 0;
+let timeLeft = 5;
+let gameRunning = false;
+
+function increaseCount() {
+    if (!gameRunning) return;
+
+    counter++;
+    document.getElementById("count").innerText = "Count: " + counter;
+}
+
+function startGame() {
+    counter = 0;
+    timeLeft = 5;
+    gameRunning = true;
+
+    document.getElementById("count").innerText = "Count: 0";
+    document.getElementById("time").innerText = "Time: " + timeLeft;
+    document.getElementById("text").innerText = "🔥 Click fast!";
+
+    let timer = setInterval(function () {
+        timeLeft--;
+        document.getElementById("time").innerText = "Time: " + timeLeft;
+
+        if (timeLeft === 0) {
+            clearInterval(timer);
+            gameRunning = false;
+            document.getElementById("text").innerText =
+                "⏱ Game Over! Score: " + counter;
+        }
+    }, 1000);
+}
+
+function resetCount() {
+    counter = 0;
+    gameRunning = false;
+    document.getElementById("count").innerText = "Count: 0";
+    document.getElementById("text").innerText = "Click the button";
+    document.getElementById("time").innerText = "Time: 5";
+}
+        }
+    </script>
+
+</body>
+</html>
